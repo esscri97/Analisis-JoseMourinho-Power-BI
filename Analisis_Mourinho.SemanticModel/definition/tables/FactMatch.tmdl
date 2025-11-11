@@ -1,0 +1,179 @@
+table FactMatch
+	lineageTag: 912a1cf4-73f9-4322-9e78-0327648fc50e
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: ace732e8-de65-46f0-bd13-025c58d0138e
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f56d844d-e061-4397-89eb-8f8ba5ecaa98
+		summarizeBy: sum
+		sourceColumn: country_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column league_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c3991d3-709a-4440-90a9-d09b63933817
+		summarizeBy: none
+		sourceColumn: league_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: b0c411e7-84b6-49ce-8332-45ba6087c6aa
+		summarizeBy: none
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7fe075f9-7304-457d-907e-21879a0687b4
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variación
+			isDefault
+			relationship: 5abc8ffc-8a26-4c2f-8454-68146909578e
+			defaultHierarchy: LocalDateTable_cd1878e6-5148-471c-89be-fd6e064f8fbf.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column home_team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: cfdbfdcf-0d0a-4840-9d61-a3cb6cb80471
+		summarizeBy: none
+		sourceColumn: home_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 768523d4-ef4e-443f-aec7-c828b66f6dbf
+		summarizeBy: sum
+		sourceColumn: away_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_team_goal
+		dataType: int64
+		formatString: 0
+		lineageTag: 38e0f80a-7560-466b-b2a2-bf1a97ef4a61
+		summarizeBy: sum
+		sourceColumn: home_team_goal
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_team_goal
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e43d42f-dfed-491f-8414-a9b9d0ee42aa
+		summarizeBy: sum
+		sourceColumn: away_team_goal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Venue
+		dataType: string
+		lineageTag: 035de472-ef15-4824-8f82-2723bf189e6b
+		summarizeBy: none
+		sourceColumn: Venue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Result
+		dataType: string
+		lineageTag: 5362d3d8-e925-4ccf-b969-62345970287c
+		summarizeBy: none
+		sourceColumn: Result
+
+		annotation SummarizationSetBy = Automatic
+
+	column Points
+		dataType: int64
+		formatString: 0
+		lineageTag: f5d15468-b43b-4aad-bdc9-2d742b9d4a3b
+		summarizeBy: sum
+		sourceColumn: Points
+
+		annotation SummarizationSetBy = Automatic
+
+	column OpponentName =
+			
+			IF(
+			  FactMatch[home_team_id] = 8633,
+			  LOOKUPVALUE(DimTeam[team_long_name], DimTeam[team_id], FactMatch[away_team_id]),
+			  LOOKUPVALUE(DimTeam[team_long_name], DimTeam[team_id], FactMatch[home_team_id])
+			)
+		lineageTag: 37e50808-ceae-42ff-acee-ba2c9f66340c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column GoalsForMatch =
+			
+			IF(FactMatch[home_team_id] = 8633, FactMatch[home_team_goal], FactMatch[away_team_goal])
+		formatString: 0
+		lineageTag: a30d6d10-a221-499c-a8b2-4bd371bd84e3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column GoalsAgainstMatch =
+			
+			IF(FactMatch[home_team_id] = 8633, FactMatch[away_team_goal], FactMatch[home_team_goal])
+		formatString: 0
+		lineageTag: 29ab3e51-9de3-4d2d-a760-f03b6d00df54
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScoreText = FORMAT([GoalsForMatch], "0") & " - " & FORMAT([GoalsAgainstMatch], "0")
+		lineageTag: 15368631-7797-4f8b-bdb5-21fe8ac04a89
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactMatch = m
+		mode: import
+		source = ```
+				let
+				    Origen = Odbc.DataSource("dsn=soccer_db", [HierarchicalNavigation=true]),
+				    Match_Table = Origen{[Name="Match",Kind="Table"]}[Data],
+				    #"Otras columnas quitadas" = Table.SelectColumns(Match_Table,{"id", "country_id", "league_id", "season", "date", "home_team_api_id", "away_team_api_id", "home_team_goal", "away_team_goal"}),
+				    #"Columnas con nombre cambiado" = Table.RenameColumns(#"Otras columnas quitadas",{{"home_team_api_id", "home_team_id"}, {"away_team_api_id", "away_team_id"}}),
+				    #"Filas filtradas" = Table.SelectRows(#"Columnas con nombre cambiado", each [home_team_id] = 8633 or [away_team_id] = 8633),
+				    #"Filas filtradas1" = Table.SelectRows(#"Filas filtradas", each ([season] = "2010/2011" or [season] = "2011/2012" or [season] = "2012/2013")),
+				    #"Personalizada agregada" = Table.AddColumn(#"Filas filtradas1", "Venue", each if [home_team_id] = 8633 then "Home" else "Away"),
+				    #"Personalizada agregada1" = Table.AddColumn(#"Personalizada agregada", "Result", each if ([home_team_id] = 8633 and [home_team_goal] > [away_team_goal]) 
+				   or ([away_team_id] = 8633 and [away_team_goal] > [home_team_goal]) 
+				then "Win" 
+				else if [home_team_goal] = [away_team_goal] then "Draw" 
+				else "Loss"),
+				    #"Personalizada agregada2" = Table.AddColumn(#"Personalizada agregada1", "Points", each if [Result] = "Win" then 3 else if [Result] = "Draw" then 1 else 0),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Personalizada agregada2",{{"away_team_goal", Int64.Type}, {"home_team_goal", Int64.Type}, {"away_team_id", Int64.Type}, {"home_team_id", Int64.Type}, {"Points", Int64.Type}, {"Result", type text}, {"Venue", type text}, {"league_id", Int64.Type}, {"country_id", Int64.Type}, {"id", Int64.Type}}),
+				    #"Valor reemplazado" = Table.ReplaceValue(#"Tipo cambiado"," 00:00:00","",Replacer.ReplaceText,{"date"}),
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Valor reemplazado",{{"date", type date}})
+				in
+				    #"Tipo cambiado1"
+				```
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

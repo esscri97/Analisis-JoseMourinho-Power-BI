@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Analisis_Mourinho"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c23b71bb-f26b-4a17-b739-52c703ccf8ed"
+  }
+}

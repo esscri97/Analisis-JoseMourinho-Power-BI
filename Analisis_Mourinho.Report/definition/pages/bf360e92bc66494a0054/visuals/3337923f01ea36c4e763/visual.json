@@ -1,0 +1,293 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "3337923f01ea36c4e763",
+  "position": {
+    "x": 43.910953282299538,
+    "y": 407.54853515134261,
+    "z": 7,
+    "height": 299.1433692356656,
+    "width": 745,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactMatch"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "FactMatch.date",
+              "nativeQueryRef": "date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactMatch"
+                    }
+                  },
+                  "Property": "OpponentName"
+                }
+              },
+              "queryRef": "FactMatch.OpponentName",
+              "nativeQueryRef": "Rival",
+              "displayName": "Rival"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactMatch"
+                    }
+                  },
+                  "Property": "Venue"
+                }
+              },
+              "queryRef": "FactMatch.Venue",
+              "nativeQueryRef": "Campo",
+              "displayName": "Campo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactMatch"
+                    }
+                  },
+                  "Property": "Result"
+                }
+              },
+              "queryRef": "FactMatch.Result",
+              "nativeQueryRef": "Win/Draw/Loss",
+              "displayName": "Win/Draw/Loss"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactMatch"
+                    }
+                  },
+                  "Property": "ScoreText"
+                }
+              },
+              "queryRef": "FactMatch.ScoreText",
+              "nativeQueryRef": "Resultado",
+              "displayName": "Resultado"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FactMatch"
+                  }
+                },
+                "Property": "date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "244.62244338178198D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FactMatch.OpponentName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "137.5556576812289D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FactMatch.Result"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "de024a071be08b09ce01",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactMatch"
+              }
+            },
+            "Property": "date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b3f39a7b961dae0490be",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactMatch"
+              }
+            },
+            "Property": "OpponentName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "56dff72544e1c0c8b73a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactMatch"
+              }
+            },
+            "Property": "Result"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8648e56c010b057a033c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactMatch"
+              }
+            },
+            "Property": "ScoreText"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f4f639c2d1210088d05e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactMatch"
+              }
+            },
+            "Property": "Venue"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,199 @@
+table Medidas
+	lineageTag: 3a8a48bc-79eb-42bf-ad83-10b03587e771
+
+	measure 'Total Puntos' =
+			SUMX(
+			    FactMatch,
+			    FactMatch[Points]
+			)
+		formatString: 0
+		lineageTag: 28bda3fc-a3b9-4763-a0e5-14d045a17755
+
+	measure 'Media Puntos' =
+			AVERAGEX(
+			    FactMatch,
+			    FactMatch[Points]
+			)
+		lineageTag: 91dec8b6-74e1-4fb7-89f5-4c6a31ea1a29
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Goles a favor' =
+			
+			SUMX(
+			    FactMatch,
+			    IF(
+			        FactMatch[home_team_id] = 8633, FactMatch[home_team_goal],
+			        IF(FactMatch[away_team_id] = 8633, FactMatch[away_team_goal])
+			    )
+			)
+		formatString: 0
+		lineageTag: d37f72ca-2269-41ee-b41f-88714deb7975
+
+	measure 'Goles en contra' =
+			
+			SUMX(
+			    FactMatch,
+			    IF(
+			        FactMatch[home_team_id] = 8633, FactMatch[away_team_goal],
+			        IF(FactMatch[away_team_id] = 8633, FactMatch[home_team_goal])
+			    )
+			)
+		formatString: 0
+		lineageTag: 202b50ad-03b2-47cb-b5a0-7ede3067f853
+
+	measure Ritmo =
+			
+			VAR TemporadasActivas = VALUES(FactMatch[season])
+			RETURN
+			CALCULATE(
+			    AVERAGE(DimTeamAttributes[buildUpPlaySpeed]),
+			    TREATAS(TemporadasActivas, DimTeamAttributes[season])
+			) + 40
+		lineageTag: 0e2e2252-1340-4367-8fbe-81061abfe246
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Creacion =
+			
+			VAR TemporadasActivas = VALUES(FactMatch[season])
+			RETURN
+			CALCULATE(
+			    (
+			      AVERAGE(DimTeamAttributes[chanceCreationPassing])
+			    + AVERAGE(DimTeamAttributes[chanceCreationCrossing])
+			    + AVERAGE(DimTeamAttributes[chanceCreationShooting])
+			    ) / 3,
+			    TREATAS(TemporadasActivas, DimTeamAttributes[season])
+			) + 30
+		lineageTag: 9be50d06-925c-4078-bdee-4ebda205b858
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Presion =
+			
+			VAR TemporadasActivas = VALUES(FactMatch[season])
+			RETURN
+			CALCULATE(
+			    AVERAGE(DimTeamAttributes[defencePressure]),
+			    TREATAS(TemporadasActivas, DimTeamAttributes[season])
+			) + 30
+		lineageTag: 514ecbb0-6fdb-4c22-a34a-cff4388e0f8f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Defensa =
+			
+			VAR TemporadasActivas = VALUES(FactMatch[season])
+			RETURN
+			CALCULATE(
+			    ( AVERAGE(DimTeamAttributes[defenceAggression])
+			    + AVERAGE(DimTeamAttributes[defenceTeamWidth]) ) / 2,
+			    TREATAS(TemporadasActivas, DimTeamAttributes[season])
+			) + 30
+		lineageTag: 8fc5123e-adaf-4537-8345-caa90db3c41c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Partidos = COUNTROWS(FactMatch)
+		formatString: 0
+		lineageTag: 418f8500-7ba8-41ca-9d99-ecb259307381
+
+	measure 'Puntos acumulados' =
+			
+			VAR CurrSeason = SELECTEDVALUE(FactMatch[season])
+			RETURN
+			CALCULATE(
+			    SUM(FactMatch[Points]),
+			    FILTER(
+			        ALL(FactMatch),
+			        FactMatch[season] = CurrSeason
+			            && (FactMatch[home_team_id] = 8633 || FactMatch[away_team_id] = 8633)
+			            && FactMatch[date] <= MAX(FactMatch[date])
+			    )
+			)
+		formatString: 0
+		lineageTag: 7375c38a-9ac8-4c16-a374-addf54343952
+
+	measure Wins =
+			
+			CALCULATE(
+			    COUNTROWS(FactMatch),
+			    FactMatch[Points] = 3
+			)
+		formatString: 0
+		lineageTag: f22e8098-1bd3-4ff2-84c8-6068a30b9c78
+
+	measure Draws =
+			
+			CALCULATE(
+			    COUNTROWS(FactMatch),
+			    FactMatch[Result] = "Draw",
+			    DimTeam[team_id] = 8633
+			)
+		formatString: 0
+		lineageTag: 954fa4df-9470-4118-9ad4-031d6fc8879a
+
+	measure Losses =
+			
+			CALCULATE(
+			    COUNTROWS(FactMatch),
+			    FactMatch[Result] = "Loss",
+			    DimTeam[team_id] = 8633
+			)
+		formatString: 0
+		lineageTag: 2a79a54d-3b12-4ef6-9da2-bdc898f01ab0
+
+	measure WinRate = DIVIDE([Wins], 38, 0)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: f03746f5-1391-4373-ab79-bb144071cf95
+
+	measure WinRateHome =
+			
+			VAR HomeWins = CALCULATE(COUNTROWS(FactMatch), FactMatch[home_team_id] = 8633, FactMatch[home_team_goal] > FactMatch[away_team_goal])
+			RETURN DIVIDE(HomeWins, 19, 0)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: d1869253-b44c-43ca-be4b-e4774b914a5e
+
+	measure WinRateAway =
+			
+			VAR AwayWins = CALCULATE(COUNTROWS(FactMatch), FactMatch[away_team_id] = 8633, FactMatch[away_team_goal] > FactMatch[home_team_goal])
+			RETURN DIVIDE(AwayWins, 19, 0)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 9f7863fb-1e70-4e17-82e3-e74045deb7f1
+
+	measure GoalsForMatch =
+			
+			VAR TeamID = 8633
+			RETURN
+			AVERAGEX(
+			    FILTER(
+			        FactMatch,
+			        FactMatch[home_team_id] = TeamID || FactMatch[away_team_id] = TeamID
+			    ),
+			    IF(
+			        FactMatch[home_team_id] = TeamID,
+			        FactMatch[home_team_goal],
+			        FactMatch[away_team_goal]
+			    )
+			)
+		lineageTag: 45f2c8e0-8295-423c-8a8e-cf7b428a1d6d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 783e0b55-6f92-4997-9f81-97242e5f7303
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = fe47f223968e4c6cbd29ce068fa8fb19
+

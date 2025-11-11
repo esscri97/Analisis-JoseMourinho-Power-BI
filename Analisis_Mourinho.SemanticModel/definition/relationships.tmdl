@@ -1,0 +1,33 @@
+relationship 5abc8ffc-8a26-4c2f-8454-68146909578e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactMatch.date
+	toColumn: LocalDateTable_cd1878e6-5148-471c-89be-fd6e064f8fbf.Date
+
+relationship AutoDetected_f20e4c5c-8773-4c40-ac3d-eae8610796fa
+	fromColumn: DimTeamAttributes.team_id
+	toColumn: DimTeam.team_id
+
+relationship 5d054ea8-80f4-e12a-b9ba-5b10dda3bb4d
+	fromColumn: FactMatch.home_team_id
+	toColumn: DimTeam.team_id
+
+relationship 309e5d7b-0b12-22a4-75a3-9998a550046b
+	isActive: false
+	fromColumn: FactMatch.away_team_id
+	toColumn: DimTeam.team_id
+
+relationship d04025d8-784f-750b-81e1-d2a7f1dba917
+	fromColumn: FactMatch.league_id
+	toColumn: DimLeague.id
+
+relationship 57a4f3a5-cf6a-4e1d-8920-862318a15eac
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimTeamAttributes.date
+	toColumn: LocalDateTable_327b60a7-55a6-4697-9fb9-7e16d0a84961.Date
+
+relationship 18a89513-8f95-c4cc-8ebd-8f2d86fa069c
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Posesion.Id_partido
+	toColumn: FactMatch.id
+

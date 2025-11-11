@@ -1,0 +1,44 @@
+table DimLeague
+	lineageTag: 78ffc464-dfe8-4be4-97db-3923a274c871
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 220baf78-194f-4b75-b5c0-023afddf313f
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c68ccf7a-3356-4cc2-9073-67aa65b3f280
+		summarizeBy: none
+		sourceColumn: country_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: c20c4b40-194b-479b-baeb-b3efb9b20b4d
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimLeague = m
+		mode: import
+		source =
+				let
+				    Origen = Odbc.DataSource("dsn=soccer_db", [HierarchicalNavigation=true]),
+				    League_Table = Origen{[Name="League",Kind="Table"]}[Data],
+				    #"Otras columnas quitadas" = Table.SelectColumns(League_Table,{"id", "country_id", "name"}),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Otras columnas quitadas",{{"country_id", Int64.Type}, {"id", Int64.Type}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
