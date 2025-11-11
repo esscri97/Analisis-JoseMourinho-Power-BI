@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 29.31412838733306,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 753.8449281912043,
+            "y": 255.8902651366476
+          },
+          "nodeIndex": "DimLeague",
+          "nodeLineageTag": "78ffc464-dfe8-4be4-97db-3923a274c871",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 555.06120199145789
+          },
+          "nodeIndex": "DimTeam",
+          "nodeLineageTag": "99786aae-b17b-4106-9b8c-5319d4df478d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 8.4559988834333524,
+            "y": 0
+          },
+          "nodeIndex": "DimTeamAttributes",
+          "nodeLineageTag": "972b2681-71c8-4bcf-93e7-42ff4b6587d3",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 2,
+          "expandedHeight": 750.69617139095658
+        },
+        {
+          "location": {
+            "x": 406.99389103683251,
+            "y": 341.25106978525474
+          },
+          "nodeIndex": "FactMatch",
+          "nodeLineageTag": "912a1cf4-73f9-4322-9e78-0327648fc50e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1037.8449281912044,
+            "y": 335.53617350069192
+          },
+          "nodeIndex": "Medidas",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 327.70131322606096,
+            "y": 76.61254419248462
+          },
+          "nodeIndex": "Posesion",
+          "nodeLineageTag": "f17bc184-3a63-43fe-8fa2-a077a44a7e4d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 70.955543900969076,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

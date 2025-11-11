@@ -1,0 +1,26 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-ES
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DimLeague","FactMatch","DimTeamAttributes","DimTeam","Posesion"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DimLeague
+ref table FactMatch
+ref table DateTableTemplate_35dd7e23-bdfd-4999-966b-cd2aa2f7076b
+ref table LocalDateTable_cd1878e6-5148-471c-89be-fd6e064f8fbf
+ref table DimTeamAttributes
+ref table DimTeam
+ref table Medidas
+ref table LocalDateTable_327b60a7-55a6-4697-9fb9-7e16d0a84961
+ref table Posesion
+
+ref cultureInfo es-ES
+

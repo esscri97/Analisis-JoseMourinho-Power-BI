@@ -1,0 +1,46 @@
+table Posesion
+	lineageTag: f17bc184-3a63-43fe-8fa2-a077a44a7e4d
+
+	column Índice
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d6df6e3-dd0a-41bb-b925-887caefee291
+		summarizeBy: sum
+		sourceColumn: Índice
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id_partido
+		dataType: int64
+		formatString: 0
+		lineageTag: aa30133a-e06a-4841-8ec6-60fcaeeec0e8
+		summarizeBy: none
+		sourceColumn: Id_partido
+
+		annotation SummarizationSetBy = Automatic
+
+	column Posesion
+		dataType: int64
+		formatString: 0
+		lineageTag: b8d3eae3-9932-4983-96ec-d4b7d7f822b7
+		summarizeBy: none
+		sourceColumn: Posesion
+
+		annotation SummarizationSetBy = User
+
+	partition Posesion = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Users\david\OneDrive\Escritorio\DAVID\MOURINHO\Posesion.txt"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Id_partido", Int64.Type}, {"Posesion", Int64.Type}}),
+				    #"Índice agregado" = Table.AddIndexColumn(#"Tipo cambiado", "Índice", 1, 1, Int64.Type),
+				    #"Columnas reordenadas" = Table.ReorderColumns(#"Índice agregado",{"Índice", "Id_partido", "Posesion"})
+				in
+				    #"Columnas reordenadas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

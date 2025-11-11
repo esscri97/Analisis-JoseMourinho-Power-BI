@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "c81adff29725c7028541",
+  "position": {
+    "x": 805.49154927218217,
+    "y": 407.54853515134261,
+    "z": 8,
+    "height": 299.1433692356656,
+    "width": 450.08727114357026,
+    "tabOrder": 8
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactMatch"
+                    }
+                  },
+                  "Property": "Venue"
+                }
+              },
+              "queryRef": "FactMatch.Venue",
+              "nativeQueryRef": "Venue"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Posesion"
+                    }
+                  },
+                  "Property": "Posesion"
+                }
+              },
+              "queryRef": "Posesion.Posesion",
+              "nativeQueryRef": "Posesion",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "GoalsForMatch"
+                }
+              },
+              "queryRef": "Medidas.GoalsForMatch",
+              "nativeQueryRef": "GoalsForMatch"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8b44b7b5e56197e10a6b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "GoalsForMatch"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3644b91eb0e28a4a30c2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Posesion"
+              }
+            },
+            "Property": "Posesion"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2c1a2dcc9d839a694019",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactMatch"
+              }
+            },
+            "Property": "Venue"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

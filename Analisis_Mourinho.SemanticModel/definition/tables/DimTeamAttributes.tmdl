@@ -1,0 +1,246 @@
+table DimTeamAttributes
+	lineageTag: 972b2681-71c8-4bcf-93e7-42ff4b6587d3
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 71737443-6c43-464b-a5ba-2bfd9ad57163
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8670b115-e7b1-4e83-bc0a-14efad605a5b
+		summarizeBy: none
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column buildUpPlaySpeed
+		dataType: int64
+		formatString: 0
+		lineageTag: a81dea0c-dfcb-4936-919e-9d84bd40cdf4
+		summarizeBy: sum
+		sourceColumn: buildUpPlaySpeed
+
+		annotation SummarizationSetBy = Automatic
+
+	column buildUpPlaySpeedClass
+		dataType: string
+		lineageTag: c284047e-ff16-4789-a56b-728700b3b63f
+		summarizeBy: none
+		sourceColumn: buildUpPlaySpeedClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column buildUpPlayDribbling
+		dataType: int64
+		formatString: 0
+		lineageTag: 7bfc19f5-6f85-49e1-aff7-0693d3d0989d
+		summarizeBy: sum
+		sourceColumn: buildUpPlayDribbling
+
+		annotation SummarizationSetBy = Automatic
+
+	column buildUpPlayDribblingClass
+		dataType: string
+		lineageTag: b06452aa-20d6-4ab6-914f-a891bac77f60
+		summarizeBy: none
+		sourceColumn: buildUpPlayDribblingClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column buildUpPlayPassing
+		dataType: int64
+		formatString: 0
+		lineageTag: 800255e7-5631-44b7-9214-1233cd3033cc
+		summarizeBy: sum
+		sourceColumn: buildUpPlayPassing
+
+		annotation SummarizationSetBy = Automatic
+
+	column buildUpPlayPassingClass
+		dataType: string
+		lineageTag: c7c3bd96-8ceb-4f05-ac28-4192a62d79cd
+		summarizeBy: none
+		sourceColumn: buildUpPlayPassingClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column buildUpPlayPositioningClass
+		dataType: string
+		lineageTag: 81742b17-f0d3-453d-975e-79163a99afde
+		summarizeBy: none
+		sourceColumn: buildUpPlayPositioningClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column chanceCreationPassing
+		dataType: int64
+		formatString: 0
+		lineageTag: 457aeaca-1c38-496f-a329-a5b25165d3d4
+		summarizeBy: sum
+		sourceColumn: chanceCreationPassing
+
+		annotation SummarizationSetBy = Automatic
+
+	column chanceCreationPassingClass
+		dataType: string
+		lineageTag: 2994f5cb-0503-4970-bc4d-222c4336ebfe
+		summarizeBy: none
+		sourceColumn: chanceCreationPassingClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column chanceCreationCrossing
+		dataType: int64
+		formatString: 0
+		lineageTag: c4e4b38d-ae3d-48d6-9b03-9dbb89deef02
+		summarizeBy: sum
+		sourceColumn: chanceCreationCrossing
+
+		annotation SummarizationSetBy = Automatic
+
+	column chanceCreationCrossingClass
+		dataType: string
+		lineageTag: 107d3aa4-0f44-4930-b402-8f3c89d037e3
+		summarizeBy: none
+		sourceColumn: chanceCreationCrossingClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column chanceCreationShooting
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bcf563f-b0ab-44ba-bb5b-3865d628263a
+		summarizeBy: sum
+		sourceColumn: chanceCreationShooting
+
+		annotation SummarizationSetBy = Automatic
+
+	column chanceCreationShootingClass
+		dataType: string
+		lineageTag: fe380f6a-1377-4a83-a597-2c616efcda52
+		summarizeBy: none
+		sourceColumn: chanceCreationShootingClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column chanceCreationPositioningClass
+		dataType: string
+		lineageTag: 4eaaf19d-22ef-4b8b-98c1-e0a789104580
+		summarizeBy: none
+		sourceColumn: chanceCreationPositioningClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column defencePressure
+		dataType: int64
+		formatString: 0
+		lineageTag: b17a3b2d-8797-4a41-9882-29fc45fea10c
+		summarizeBy: sum
+		sourceColumn: defencePressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column defencePressureClass
+		dataType: string
+		lineageTag: e69c8383-508e-4cb1-b9a4-4c7b8de4bb28
+		summarizeBy: none
+		sourceColumn: defencePressureClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column defenceAggression
+		dataType: int64
+		formatString: 0
+		lineageTag: d259378a-2640-49a8-bd2d-3cd0da4c76ee
+		summarizeBy: sum
+		sourceColumn: defenceAggression
+
+		annotation SummarizationSetBy = Automatic
+
+	column defenceAggressionClass
+		dataType: string
+		lineageTag: 577af43e-e209-4c1a-8ee7-e35b76756e06
+		summarizeBy: none
+		sourceColumn: defenceAggressionClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column defenceTeamWidth
+		dataType: int64
+		formatString: 0
+		lineageTag: 32275494-b2e2-46a1-a78f-0152ea9c047c
+		summarizeBy: sum
+		sourceColumn: defenceTeamWidth
+
+		annotation SummarizationSetBy = Automatic
+
+	column defenceTeamWidthClass
+		dataType: string
+		lineageTag: 1e31e15d-131e-4913-bd57-1830a7ab1251
+		summarizeBy: none
+		sourceColumn: defenceTeamWidthClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column defenceDefenderLineClass
+		dataType: string
+		lineageTag: d7c6aaeb-1e37-4291-8dde-af1d39a4363b
+		summarizeBy: none
+		sourceColumn: defenceDefenderLineClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 9e25c799-9d34-4453-bd00-88424a8b7ae5
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variación
+			isDefault
+			relationship: 57a4f3a5-cf6a-4e1d-8920-862318a15eac
+			defaultHierarchy: LocalDateTable_327b60a7-55a6-4697-9fb9-7e16d0a84961.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Season
+		dataType: string
+		lineageTag: e7992dea-2ca7-4ff1-ad03-2f1b07ec24a1
+		summarizeBy: none
+		sourceColumn: Season
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimTeamAttributes = m
+		mode: import
+		source =
+				let
+				    Origen = Odbc.DataSource("dsn=soccer_db", [HierarchicalNavigation=true]),
+				    Team_Attributes_Table = Origen{[Name="Team_Attributes",Kind="Table"]}[Data],
+				    #"Columnas con nombre cambiado" = Table.RenameColumns(Team_Attributes_Table,{{"team_api_id", "team_id"}}),
+				    #"Filas filtradas" = Table.SelectRows(#"Columnas con nombre cambiado", each ([team_id] = 8633)),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Filas filtradas",{{"id", Int64.Type}, {"team_id", Int64.Type}, {"buildUpPlaySpeed", Int64.Type}, {"buildUpPlayDribbling", Int64.Type}, {"buildUpPlayPassing", Int64.Type}, {"chanceCreationPassing", Int64.Type}, {"chanceCreationCrossing", Int64.Type}, {"chanceCreationShooting", Int64.Type}, {"defencePressure", Int64.Type}, {"defenceAggression", Int64.Type}, {"defenceTeamWidth", Int64.Type}}),
+				    #"Valor reemplazado" = Table.ReplaceValue(#"Tipo cambiado"," 00:00:00","",Replacer.ReplaceText,{"date"}),
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Valor reemplazado",{{"date", type date}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado1",{"team_fifa_api_id", "Team(team_api_id)", "Team(team_fifa_api_id)"}),
+				    #"Personalizada agregada" = Table.AddColumn(#"Columnas quitadas", "Season", each if Date.Month([date]) >= 7
+				then Text.From(Date.Year([date])) & "/" & Text.From(Date.Year([date]) + 1)
+				else Text.From(Date.Year([date]) - 1) & "/" & Text.From(Date.Year([date]))),
+				    #"Filas filtradas1" = Table.SelectRows(#"Personalizada agregada", each ([Season] = "2010/2011" or [Season] = "2011/2012" or [Season] = "2013/2014")),
+				    #"Valor reemplazado1" = Table.ReplaceValue(#"Filas filtradas1","2013/2014","2012/2013",Replacer.ReplaceText,{"Season"})
+				in
+				    #"Valor reemplazado1"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

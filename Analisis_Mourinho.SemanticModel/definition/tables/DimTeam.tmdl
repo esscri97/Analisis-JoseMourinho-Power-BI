@@ -1,0 +1,46 @@
+table DimTeam
+	lineageTag: 99786aae-b17b-4106-9b8c-5319d4df478d
+
+	column team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ab86cb41-cd04-4bfa-a091-41ea83363342
+		summarizeBy: none
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_short_name
+		dataType: string
+		lineageTag: c14f5be0-d727-4155-9fad-e6247b701473
+		summarizeBy: none
+		sourceColumn: team_short_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_long_name
+		dataType: string
+		lineageTag: 478663df-0ff8-4123-a9b6-ca974501d327
+		summarizeBy: none
+		sourceColumn: team_long_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimTeam = m
+		mode: import
+		source =
+				let
+				    Origen = Odbc.DataSource("dsn=soccer_db", [HierarchicalNavigation=true]),
+				    Team_Table = Origen{[Name="Team",Kind="Table"]}[Data],
+				    #"Otras columnas quitadas" = Table.SelectColumns(Team_Table,{"team_api_id", "id", "team_short_name", "team_long_name"}),
+				    #"Duplicados quitados" = Table.Distinct(#"Otras columnas quitadas", {"id"}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Duplicados quitados",{"id"}),
+				    #"Columnas con nombre cambiado" = Table.RenameColumns(#"Columnas quitadas",{{"team_api_id", "team_id"}}),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Columnas con nombre cambiado",{{"team_id", Int64.Type}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
